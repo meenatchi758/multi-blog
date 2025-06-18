@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% extends 'base.html' %}
+{% block content %}
+<h2>All Blog Posts</h2>
+{% for post in posts %}
+  <div class="card my-3">
+    <div class="card-body">
+      <h5 class="card-title">{{ post.title }}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">By {{ post.author.username }} on {{ post.date.strftime('%Y-%m-%d') }}</h6>
+      <p class="card-text">{{ post.content }}</p>
+    </div>
+  </div>
+{% else %}
+  <p>No blog posts yet.</p>
+{% endfor %}
+<a href="{{ url_for('login') }}" class="btn btn-primary">Login</a> |
+<a href="{{ url_for('register') }}" class="btn btn-secondary">Register</a>
+{% endblock %}
+
+</body>
+</html>

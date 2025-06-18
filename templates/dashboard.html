@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% extends 'base.html' %}
+{% block content %}
+<h2>Your Posts</h2>
+<a href="{{ url_for('create') }}" class="btn btn-success mb-3">Create New Post</a>
+<a href="{{ url_for('logout') }}" class="btn btn-danger mb-3 float-end">Logout</a>
+
+{% for post in posts %}
+  <div class="card my-3">
+    <div class="card-body">
+      <h5 class="card-title">{{ post.title }}</h5>
+      <p class="card-text">{{ post.content }}</p>
+      <small class="text-muted">Posted on {{ post.date.strftime('%Y-%m-%d') }}</small>
+    </div>
+  </div>
+{% else %}
+  <p>You haven't written any posts yet.</p>
+{% endfor %}
+{% endblock %}
+
+</body>
+</html>
